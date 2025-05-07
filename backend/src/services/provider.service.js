@@ -46,6 +46,17 @@ class ProviderService {
 
   static async createProvider(providerData) {
     try {
+      if (!providerData.name || !providerData.companyName || !providerData.address) {
+        throw new Error('Todos los campos (nombre, razón social, dirección) son requeridos');
+      }
+
+      if (providerData.name.length < 3) {
+        throw new Error('El nombre debe tener al menos 3 caracteres');
+      }
+
+      if (providerData.name.length > 100) {
+        throw new Error('El nombre no puede exceder 100 caracteres');
+      }
       const data = await this.loadData();
       
       const existe = data.providers.some(p => p.name === providerData.name);
