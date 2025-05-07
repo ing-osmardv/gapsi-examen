@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/welcome', require('./routes/auth.router'));
+app.use('/providers', require('./routes/provider.router'));
 
 // Error handler
 app.use((err, req, res, next) => {

@@ -1,0 +1,18 @@
+{
+    "providers": [
+      {
+        "id": 1,
+        "name": "Proveedor Ejemplo 1",
+        "companyName": "Razón Social 1 S.A. de C.V.",
+        "address": "Calle Falsa 123, Ciudad de México",
+        "createdAt": "2023-01-01T12:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "name": "Proveedor Ejemplo 2",
+        "companyName": "Razón Social 2 S.A. de C.V.",
+        "address": "Avenida Siempre Viva 456, Guadalajara",
+        "createdAt": "2023-01-02T12:00:00.000Z"
+      }
+    ]
+  }
