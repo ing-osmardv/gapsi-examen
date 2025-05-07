@@ -14,6 +14,9 @@ app.use(morgan('dev', { stream: logger.stream }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Routes
+app.use('/welcome', require('./routes/auth.router'));
+
 // Error handler
 app.use((err, req, res, next) => {
   logger.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
