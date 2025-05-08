@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const providerController = require('../controllers/provider.controller');
+const providerController = require("../controllers/provider.controller");
 
 /**
  * @swagger
@@ -87,7 +87,7 @@ const providerController = require('../controllers/provider.controller');
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-router.get('', providerController.getProviders);
+router.get("", providerController.getProviders);
 
 /**
  * @swagger
@@ -126,7 +126,7 @@ router.get('', providerController.getProviders);
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-router.post('', providerController.createProvider);
+router.post("", providerController.createProvider);
 
 /**
  * @swagger
@@ -151,6 +151,6 @@ router.post('', providerController.createProvider);
  *             schema:
  *               $ref: '#/components/schemas/ErrorResponse'
  */
-router.delete('/:id', providerController.deleteProvider);
+router.delete("/:id", providerController.deleteProvider);
 
 module.exports = router;

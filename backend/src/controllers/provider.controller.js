@@ -1,5 +1,5 @@
-const ProviderService = require('../services/provider.service');
-const logger = require('../utils/logger');
+const ProviderService = require("../services/provider.service");
+const logger = require("../utils/logger");
 
 exports.getProviders = async (req, res) => {
   try {
