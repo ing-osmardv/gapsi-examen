@@ -7,7 +7,7 @@ import {
   Alert,
   Box,
 } from "@mui/material";
-import { createProvider } from "../../services/provider.service";
+import { createProvider, createProviderGQL } from "../../services/provider.service";
 
 export default function ProviderForm({ onProviderAdded, onCancel }) {
   const [formData, setFormData] = useState({
@@ -32,7 +32,7 @@ export default function ProviderForm({ onProviderAdded, onCancel }) {
     setError(null);
 
     try {
-      await createProvider(formData);
+      await createProviderGQL(formData);
       onProviderAdded();
     } catch ({ response }) {
       const message = response.data.error;

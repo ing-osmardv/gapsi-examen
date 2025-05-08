@@ -18,7 +18,7 @@ import {
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
-import { getProviders, deleteProvider } from "../../services/provider.service";
+import { getProviders, deleteProvider, getProvidersGQL, deleteProviderQGL } from "../../services/provider.service";
 import "./Providers.css";
 import ProviderForm from "../ProviderForm/ProviderForm";
 
@@ -34,13 +34,14 @@ export default function Providers() {
   }, [page, rowsPerPage]);
 
   const fetchProviders = async () => {
-    const response = await getProviders(page + 1, rowsPerPage); // +1 if backend expects page starting at 1
-    setProviders(response.items); // Or response.items based on your backend
+    console.log("Fetching providers...");
+    const response = await getProviders(page + 1, rowsPerPage);
+    setProviders(response.items); 
     setTotalCount(response.total);
   };
 
   const handleDelete = async (id) => {
-    await deleteProvider(id);
+    await deleteProviderQGL(id);
     fetchProviders();
   };
 
