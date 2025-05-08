@@ -29,6 +29,9 @@ require("./swagger")(app);
 // Routes REST
 app.use("/welcome", require("./routes/auth.router"));
 app.use("/providers", require("./routes/provider.router"));
+// Iniciar Apollo Server
+const graphqlMiddleware = require('./graphql/server');
+app.use('/graphql', graphqlMiddleware);
 
 // Error handler
 app.use((err, req, res, next) => {
@@ -41,3 +44,4 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = app;
+
