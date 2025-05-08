@@ -24,7 +24,7 @@ import ProviderForm from "../ProviderForm/ProviderForm";
 
 export default function Providers() {
   const [providers, setProviders] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0); // Page index starts from 0
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [totalCount, setTotalCount] = useState(0);
   const [openModal, setOpenModal] = useState(false);
@@ -34,26 +34,23 @@ export default function Providers() {
   }, [page, rowsPerPage]);
 
   const fetchProviders = async () => {
-    const response = await getProviders(page, rowsPerPage);
-    setProviders(response.items);
+    const response = await getProviders(page + 1, rowsPerPage); // +1 if backend expects page starting at 1
+    setProviders(response.items); // Or response.items based on your backend
     setTotalCount(response.total);
   };
 
-  const handleDelete = async (name) => {
-    await deleteProvider(name);
+  const handleDelete = async (id) => {
+    await deleteProvider(id);
     fetchProviders();
   };
 
   const handleChangePage = (event, newPage) => {
-    if (newPage < 1 || newPage > Math.ceil(totalCount / rowsPerPage)) {
-      return;
-    }
     setPage(newPage);
   };
 
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(1);
+    setPage(0); // Reset to first page
   };
 
   const handleOpenModal = () => {
@@ -120,8 +117,8 @@ export default function Providers() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {providers.map((prov, idx) => (
-                  <TableRow key={idx}>
+                {providers.map((prov) => (
+                  <TableRow key={prov.id}>
                     <TableCell>{prov.name}</TableCell>
                     <TableCell>{prov.companyName}</TableCell>
                     <TableCell>{prov.address}</TableCell>
@@ -154,6 +151,7 @@ export default function Providers() {
             rowsPerPage={rowsPerPage}
             onRowsPerPageChange={handleChangeRowsPerPage}
             labelRowsPerPage="Filas por página"
+            rowsPerPageOptions={[5, 10, 25]}
           />
         </Paper>
       </div>
