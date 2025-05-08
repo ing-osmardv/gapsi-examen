@@ -7,12 +7,8 @@ export const getProviders = async (page, size) => {
   return res.data;
 };
 
-export const createProvider = async (name, companyName, address) => {
-  const res = await axios.post(`http://localhost:3000/providers`, {
-    name,
-    companyName,
-    address,
-  });
+export const createProvider = async (payload) => {
+  const res = await axios.post(`http://localhost:3000/providers`, payload);
   return res.data;
 };
 
