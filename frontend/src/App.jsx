@@ -1,12 +1,22 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from "react-router-dom";
 import Welcome from "./components/Welcome/Welcome";
+import gapsiLogo from "./assets/logo.png";
+import Providers from "./components/Providers/Providers";
+import "./App.css";
 
 function App() {
   return (
     <div className="app">
-      <Routes>
-        <Route path="/" element={<Welcome />} />
-      </Routes>
+      <div className="con">
+        <header className="header">
+          <img src={gapsiLogo} alt="Gapsi Logo" className="logo" />
+          <h1>e-Commerce Gapsi</h1>
+        </header>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/providers" element={<Providers />} />
+        </Routes>
+      </div>
     </div>
   );
 }
